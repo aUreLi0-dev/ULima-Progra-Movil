@@ -41,6 +41,30 @@ Para replicar el entorno en **Android Studio**, se debe de tener instalados los 
 
 ## Diagramas de Casos de Uso
 
+### Paquete Autenticación y Seguridad
+![Autenticación y Seguridad](assets/casos_uso/Autenticacion_Seguridad.png)
+
+### Paquete Gestión del Perfil Académico
+![Gestión del Perfil Académico](assets/casos_uso/Perfil_Academico.png)
+
+### Paquete Gestión de Malla Curricular
+![Gestión de Malla Curricular](assets/casos_uso/Malla_Curricular.png)
+
+### Paquete Seguimiento Académico
+![Seguimiento Académico](assets/casos_uso/Seguimiento_Academico.png)
+
+### Paquete Análisis de Riesgo Académico
+![Análisis de Riesgo Académico](assets/casos_uso/Riesgo_Academico.png)
+
+### Paquete Gestión de Sección
+![Gestión de Sección](assets/casos_uso/Gestion_Seccion.png)
+
+### Paquete Administrador
+![Administrador](assets/casos_uso/Administrador.png)
+
+### Paquete Estructura de Secciones
+![Estructura de Secciones](assets/casos_uso/Estructura_Seccion.png)
+
 ## Requerimientos No Funcionales
 
 ## Diagrama de despliegue
