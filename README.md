@@ -41,29 +41,47 @@ Para replicar el entorno en **Android Studio**, se debe de tener instalados los 
 
 ## Diagramas de Casos de Uso por Paquete
 
-### Paquete Autenticación y Seguridad
-![Autenticación y Seguridad](assets/casos_uso/Autenticacion_Seguridad.png)
+<div align="center">
 
-### Paquete Gestión del Perfil Académico
-![Gestión del Perfil Académico](assets/casos_uso/Perfil_Academico.png)
+### Autenticación y Seguridad
+<img src="assets/casos_uso/Autenticacion_Seguridad.png" width="500"/>
 
-### Paquete Gestión de Malla Curricular
-![Gestión de Malla Curricular](assets/casos_uso/Malla_Curricular.png)
+---
 
-### Paquete Seguimiento Académico
-![Seguimiento Académico](assets/casos_uso/Seguimiento_Academico.png)
+### Gestión del Perfil Académico
+<img src="assets/casos_uso/Perfil_Academico.png" width="500"/>
 
-### Paquete Análisis de Riesgo Académico
-![Análisis de Riesgo Académico](assets/casos_uso/Riesgo_Academico.png)
+---
 
-### Paquete Gestión de Sección
-![Gestión de Sección](assets/casos_uso/Gestion_Seccion.png)
+### Gestión de Malla Curricular
+<img src="assets/casos_uso/Malla_Curricular.png" width="500"/>
 
-### Paquete Administrador
-![Administrador](assets/casos_uso/Administrador.png)
+---
 
-### Paquete Estructura de Secciones
-![Estructura de Secciones](assets/casos_uso/Estructura_Seccion.png)
+### Seguimiento Académico
+<img src="assets/casos_uso/Seguimiento_Academico.png" width="500"/>
+
+---
+
+### Análisis de Riesgo Académico
+<img src="assets/casos_uso/Riesgo_Academico.png" width="500"/>
+
+---
+
+### Gestión de Sección
+<img src="assets/casos_uso/Gestion_Seccion.png" width="500"/>
+
+---
+
+### Administrador
+<img src="assets/casos_uso/Administrador.png" width="500"/>
+
+---
+
+### Estructura de Secciones
+<img src="assets/casos_uso/Estructura_Seccion.png" width="500"/>
+
+</div>
 
 ## Requerimientos No Funcionales
 | Item | Requerimiento |
@@ -87,35 +105,36 @@ Para replicar el entorno en **Android Studio**, se debe de tener instalados los 
 ## Diagrama de Despliegue
 
 ## Mockups
+## Registro e Inicio de Sesión
+<div align="center">
 
-#### Pantalla de Inicio
-![Inicio](assets/UI/InicioSesion.png)
-#### Pantalla de Configuración de carrera
-![Configuracion Carrera](assets/UI/ConfiguracionCarrera.png)
-#### Pantalla de Malla Curricular
-![Malla Curricular](assets/UI/MallaCurricular.png)
-#### Pantalla de malla curricular interactiva con cursos electivos según especialidad
-![Malla Curricular con Cursos Electivos](assets/UI/MallaCurricular_Electivos.png)
-#### Pantalla de Calculadora de Notas
-![Calculadora de Notas](assets/UI/CalculadoraNotas.png)
-#### Pantalla de Subir Silabo
-![Subir Silabo](assets/UI/SubirSilabo.png)
-#### Pantalla de Agregar Nota
-![Agregar Nota](assets/UI/AgregarNota.png)
-#### Pantalla de Visualizar Nota por Curso
-![Visualizar Nota por Curso](assets/UI/NotasPorCurso.png)
-#### Pantalla de Horario Academico - Evaluaciones
-![Horario Academico - Evaluaciones](assets/UI/HorarioAcademico_Evaluaciones.png)
-#### Pantalla de Detalle del Curso - Anuncios
-![Anuncios del Curso](assets/UI/Anuncios.png)
-#### Pantalla de Detalle de Curso - Asesorías
-![Asesorias](assets/UI/Asesorias.png)
-#### Pantalla de Detalle de Curso - Contactos
-![Contactos](assets/UI/Contactos.png)
-#### Pantalla de Perfil
-![Perfil](assets/UI/Perfil.png)
-#### Pantalla de Buzón de Alertas
-![Buzon de Alertas](assets/UI/BuzonAlertas.png)
+| Inicio de Sesión |
+| :---: |
+| <img src="assets/UI/InicioSesion.png" width="300"/> |
+
+</div>
+
+---
+
+## Control Académico e Interacción
+<div align="center">
+
+| Malla Curricular | Calculadora de Notas | Horario Académico |
+| :---: | :---: | :---: |
+| <img src="assets/UI/MallaCurricular.png" width="250"/> | <img src="assets/UI/CalculadoraNotas.png" width="250"/> | <img src="assets/UI/HorarioAcademico_Evaluaciones.png" width="250"/> |
+
+</div>
+
+---
+
+## Detalles y Notificaciones
+<div align="center">
+
+| Gestión de Sílabo | Visualización por Curso | Buzón de Alertas |
+| :---: | :---: | :---: |
+| <img src="assets/UI/SubirSilabo.png" width="250"/> | <img src="assets/UI/NotasPorCurso.png" width="250"/> | <img src="assets/UI/BuzonAlertas.png" width="250"/> |
+
+</div>
 
 ### Módulo Delegado
 El actor "Delegado" tendrá agregado su propio módulo donde se presentan las siguientes pantallas:
