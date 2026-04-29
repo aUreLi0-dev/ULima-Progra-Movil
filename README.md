@@ -132,7 +132,7 @@ Para replicar el entorno en **Android Studio**, se debe de tener instalados los 
 
 | Gestión de Sílabo | Visualización por Curso | Buzón de Alertas |
 | :---: | :---: | :---: |
-| <img src="assets/UI/SubirSilabo.png" width="250"/> | <img src="assets/UI/NotasPorCurso.png" width="233"/> | <img src="assets/UI/BuzonAlertas.png" width="250"/> |
+| <img src="assets/UI/SubirSilabo.png" width="250"/> | <img src="assets/UI/NotasPorCurso.png" width="250"/> | <img src="assets/UI/BuzonAlertas.png" width="250"/> |
 
 </div>
 
