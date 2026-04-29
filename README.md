@@ -4,12 +4,12 @@ App móvil diseñada para estudiantes de la Universidad de Lima que facilita la 
 ---
 
 ## Tabla de Contenidos
-* [Descripcion del entorno de desarrollo](#-descripcion-del-entorno-de-desarrollo)
-* [Requerimientos Funcionales](#-requerimientos-funcionales)
-* [Diagramas de Casos de Uso](#-diagramas-de-casos-de-uso)
-* [Requerimientos No Funcionales](#-requerimientos-no-funcionales)
-* [Diagrama de Despliegue](#-diagrama-de-despliegue)
-* [Mockups](#-mockups)
+* [Descripcion del entorno de desarrollo](#descripcion-del-entorno-de-desarrollo)
+* [Requerimientos Funcionales](#requerimientos-funcionales)
+* [Diagramas de Casos de Uso](#diagramas-de-casos-de-uso)
+* [Requerimientos No Funcionales](#requerimientos-no-funcionales)
+* [Diagrama de Despliegue](#diagrama-de-despliegue)
+* [Mockups](#mockups)
 
 ---
 
@@ -39,19 +39,18 @@ Para replicar el entorno en **Android Studio**, se debe de tener instalados los 
 
 ## Requerimientos Funcionales
 
-## Diagramas de Casos de Uso por Paquete
+## Diagramas de Casos de Uso
+<!--falta relacionar a los req funcionales-->
 
 <div align="center">
 
 ### Autenticación y Seguridad
-<img src="assets/casos_uso/Autenticacion_Seguridad.png" width="500"/>
 
----
+<img src="assets/casos_uso/Autenticacion_Seguridad.png" width="500"/>
 
 ### Gestión del Perfil Académico
 <img src="assets/casos_uso/Perfil_Academico.png" width="500"/>
 
----
 
 ### Gestión de Malla Curricular
 <img src="assets/casos_uso/Malla_Curricular.png" width="500"/>
@@ -71,15 +70,6 @@ Para replicar el entorno en **Android Studio**, se debe de tener instalados los 
 ### Gestión de Sección
 <img src="assets/casos_uso/Gestion_Seccion.png" width="500"/>
 
----
-
-### Administrador
-<img src="assets/casos_uso/Administrador.png" width="500"/>
-
----
-
-### Estructura de Secciones
-<img src="assets/casos_uso/Estructura_Seccion.png" width="500"/>
 
 </div>
 
@@ -104,7 +94,14 @@ Para replicar el entorno en **Android Studio**, se debe de tener instalados los 
 
 ## Diagrama de Despliegue
 
+
 ## Mockups
+
+> Esta sección presenta la propuesta de diseño de la interfaz de usuario (IU) para **ULima++**, basada en el prototipo desarrollado en Figma.
+>
+> Video demostratrivo: https://drive.google.com/file/d/1Ud0QhYXlN042FXot4d3tmKxhiTqTsK9D/view?usp=sharing
+
+
 ## Registro e Inicio de Sesión
 <div align="center">
 
@@ -127,28 +124,47 @@ Para replicar el entorno en **Android Studio**, se debe de tener instalados los 
 
 ---
 
-## Detalles y Notificaciones
+## Calculadora de Notas
 <div align="center">
 
-| Gestión de Sílabo | Visualización por Curso | Buzón de Alertas |
+| Gestión de Sílabo | Agregar Nota | Visualización de Notas |
 | :---: | :---: | :---: |
-| <img src="assets/UI/SubirSilabo.png" width="250"/> | <img src="assets/UI/NotasPorCurso.png" width="250"/> | <img src="assets/UI/BuzonAlertas.png" width="250"/> |
+| <img src="assets/UI/SubirSilabo.png" width="250"/> | <img src="assets/UI/AgregarNota.png" width="250"/> | <img src="assets/UI/NotasPorCurso.png" width="250"/> |
+
 
 </div>
 
+## Detalles de Curso
+<div align="center">
+
+| Anuncios | Asesorias | Contactos |
+| :---: | :---: | :---: |
+| <img src="assets/UI/Anuncios.png" width="250"/> | <img src="assets/UI/Asesorias.png" width="250"/> | <img src="assets/UI/Contactos.png" width="250"/> | 
+
+</div>
+
+## Perfil y Notificaciones
+<div align="center">
+
+| Perfil | Buzón de Alertas |
+| :---: | :---: |
+| <img src="assets/UI/Perfil.png" width="250"/> | <img src="assets/UI/BuzonAlertas.png" width="250"/> |
+
+
+</div>
+
+
 ### Módulo Delegado
-El actor "Delegado" tendrá agregado su propio módulo donde se presentan las siguientes pantallas:
+El actor 'Delegado' contará con un módulo exclusivo que integra las siguientes interfaces:
 
-#### Pantalla de Gestión de Cursos - Delegado
+<div align="center">
 
-#### Pantalla de Gestion de Anuncios - Delegado
-#### Pantalla de Seguimiento de Progreso de Sección - Delegado
+| Gestión de Cursos | Gestion de Anuncios | Seguimiento de Progreso de Sección |
+| :---: | :---: | :---: |
+| <img src="assets/UI/GestionCursosDelegado.png" width="250"/> | <img src="assets/UI/GestionAnunciosDelegado.png" width="250"/> | <img src="assets/UI/SeguimientoProgresoSeccion.png" width="250"/> |
 
-<!-- A partir de aqui es lo del ADMIN, q creo q ya no va(???) - preguntar a kingtana -->
-### Pantallas del Administrador
-#### Pantalla de Gestión de Información - Administrador
-#### Pantalla de Nuevo/Editar registro de Carrera - Administrador
-#### Pantalla de Nuevo/Editar Registro de Malla - Administrador
+</div>
+
 
 
 
