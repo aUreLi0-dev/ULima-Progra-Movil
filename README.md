@@ -28,9 +28,9 @@ El entorno está optimizado para el desarrollo multiplataforma buscando eficienc
 
 | Herramienta | Función | Versión Sugerida |
 | :--- | :--- | :--- |
-| **Flutter SDK** | Framework principal de desarrollo UI | `^3.x.x` (Stable) |
-| **Android Studio** | IDE principal y gestión de emuladores | `Ladybug` o superior |
-| **Dart** | Lenguaje de programación | `^3.x.x` |
+| **Flutter SDK** | Framework principal de desarrollo UI | `^3.41.6` (Stable) |
+| **Android Studio** | IDE principal y gestión de emuladores | `Otter 2 Feature Drop` |
+| **Dart** | Lenguaje de programación | `^3.11.4` |
 
 #### Configuración del IDE
 Para replicar el entorno en **Android Studio**, se debe de tener instalados los siguientes plugins:
