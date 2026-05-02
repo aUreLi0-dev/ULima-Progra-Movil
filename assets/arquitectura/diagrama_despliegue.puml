@@ -6,10 +6,13 @@ node "Dispositivo Móvil\n(Android)" {
   component "App ULima++\n(Flutter)"
 }
 
+node "Servicio de Autenticación\n(Externo)" {
+  component "Autenticación\n(OAuth 2.0 / JWT)"
+}
+
 node "Servidor Backend" {
   component "Load Balancer/\nReverse Proxy" as LB
   component "API REST\n(Ruby Sinatra)" as API
-  component "Servicio de\nAutenticación" as AUTH
   component "Servicio de\nNotificaciones" as NOTIF
   component "Cache\n(Redis)" as CACHE
   database "MySQL"
@@ -17,9 +20,10 @@ node "Servidor Backend" {
 }
 
 ' Relaciones
-"App ULima++\n(Flutter)" --> LB : HTTPS / JSON
+"App ULima++\n(Flutter)" --> "Autenticación\n(OAuth 2.0 / JWT)" : Credenciales
+"Autenticación\n(OAuth 2.0 / JWT)" --> LB : Token válido
+"App ULima++\n(Flutter)" --> LB : HTTPS / JSON + Token
 LB --> API : Balanceo de carga
-LB --> AUTH : Validación de credenciales
 API --> CACHE : Datos frecuentes
 API --> MYSQL : Acceso exclusivo
 API --> STORAGE : Gestión de Sílabos
