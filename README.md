@@ -94,6 +94,69 @@ Para replicar el entorno en **Android Studio**, se debe de tener instalados los 
 
 ## Diagrama de Despliegue
 
+### Descripción General
+
+El diagrama de despliegue de **ULima++** representa la arquitectura del sistema en producción, mostrando cómo interactúan los diferentes componentes desde el dispositivo móvil del usuario hasta los servidores backend.
+
+### Arquitectura del Sistema
+
+La arquitectura implementa un modelo de **cliente-servidor distribuido** con separación clara de responsabilidades:
+
+**Capa de Presentación (Cliente):**
+- Aplicación móvil nativa desarrollada en **Flutter** para dispositivos Android
+- Comunicación segura con el backend mediante protocolo **HTTPS/JSON**
+
+**Capa de Aplicación (Servidor Backend):**
+- **Load Balancer/Reverse Proxy**: Distribuye las solicitudes entre múltiples instancias del API para garantizar disponibilidad 99% y manejar acceso concurrente
+- **API REST (Ruby Sinatra)**: Punto central de acceso a datos. Es el único componente que accede a la base de datos, implementando el patrón *single source of truth*
+- **Servicio de Autenticación**: Valida credenciales institucionales y gestiona tokens de sesión con control de roles
+- **Servicio de Notificaciones**: Genera y envía alertas académicas a los usuarios
+
+**Capa de Datos y Almacenamiento:**
+- **Cache (Redis)**: Almacenamiento en memoria para datos frecuentemente consultados, optimizando respuestas a menos de 2 segundos
+- **MySQL**: Base de datos relacional principal para persistencia de datos académicos
+- **Almacenamiento de Archivos**: Sistema para gestión de sílabos y documentos académicos
+
+### Flujo de Comunicación
+
+1. La app móvil envía solicitudes autenticadas al Load Balancer
+2. El Load Balancer distribuye las peticiones al API REST
+3. El API valida la autenticación, consulta el caché si es necesario
+4. Para datos no en caché, el API accede a MySQL
+5. El API emite alertas a través del Servicio de Notificaciones
+6. Las respuestas retornan al cliente en formato JSON
+
+### Principios de Diseño
+
+- **Desacoplamiento**: Los servicios se comunican a través del API, no directamente a la BD
+- **Escalabilidad**: Fácil agregar nuevas instancias del API o servicios sin modificar la estructura existente
+- **Seguridad**: Punto único de control de acceso a datos sensibles
+- **Rendimiento**: Caché distribuido reduce latencia y carga en la BD
+- **Disponibilidad**: Load Balancer garantiza redundancia y tolerancia a fallos
+
+<div align="center">
+
+![Diagrama de Despliegue ULima++](assets/arquitectura/diagrama_despliegue.png)
+
+> **Especificación técnica:** [`diagrama_despliegue.puml`](assets/arquitectura/diagrama_despliegue.puml)
+
+</div>
+
+### Componentes
+
+- **Load Balancer**: Balanceo de carga y disponibilidad
+- **Servicio de Autenticación**: Validación de credenciales y control de roles
+- **Servicio de Notificaciones**: Alertas y comunicación
+- **Cache (Redis)**: Optimización de rendimiento
+- **MySQL**: Persistencia de datos (acceso exclusivo a través del API)
+- **Almacenamiento de Archivos**: Gestión de sílabos
+
+### Decisiones Arquitectónicas
+
+- **Patrón Single Source of Truth**: Solo el API accede a MySQL, garantizando consistencia de datos
+- **Separación de responsabilidades**: Cada servicio tiene una función específica y bien definida
+- **Tecnologías seleccionadas**: Ruby Sinatra por su simpleza y eficiencia, MySQL por confiabilidad, Redis para caché distribuido
+
 
 ## Mockups
 
