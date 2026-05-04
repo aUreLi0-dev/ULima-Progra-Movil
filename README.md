@@ -5,10 +5,10 @@ App móvil diseñada para estudiantes de la Universidad de Lima que facilita la 
 
 ## Tabla de Contenidos
 * [Descripcion del entorno de desarrollo](#descripcion-del-entorno-de-desarrollo)
-* [Casos de Uso por Paquete](#casos-de-Uso-por-Paquete)
+* [Casos de Uso por Paquete](#casos-de-uso-por-paquete)
 * [Requerimientos Funcionales](#requerimientos-funcionales)
 * [Requerimientos No Funcionales](#requerimientos-no-funcionales)
-* [Matriz de Trazabilidad](#Matriz-de-Trazabilidad)
+* [Matriz de Trazabilidad](#matriz-de-trazabilidad)
 * [Diagrama de Despliegue](#diagrama-de-despliegue)
 * [Mockups](#mockups)
 
