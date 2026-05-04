@@ -33,10 +33,29 @@ El entorno está optimizado para el desarrollo multiplataforma buscando eficienc
 | **Dart** | Lenguaje de programación | `3.11.4` |
 | **VSCode** | Editor de código | `1.118.1` |
 
-#### Configuración del IDE
-Para replicar el entorno en **Android Studio**, se debe de tener instalados los siguientes plugins:
-1. `Flutter` (oficial de dev.dart).
-2. `Dart` (soporte de lenguaje).
+### Guía Detallada de Instalación del Entorno
+Para asegurar la correcta ejecución del proyecto, siga estos pasos de configuración:
+
+#### 1. Instalación de Flutter SDK
+1. Descargue la versión **3.41.6 (Stable)** desde el sitio oficial de Flutter.
+2. Descomprima el archivo en una ruta segura y sin espacios (ejemplo: `C:\src\flutter` en Windows o `~/development/flutter` en macOS/Linux).
+3. **Variables de entorno:** Agregue el directorio `bin` de Flutter a la variable `PATH` de su sistema operativo.
+4. Abra una terminal y ejecute `flutter doctor` para verificar que el SDK esté correctamente configurado.
+
+#### 2. Configuración de Android Studio
+1. Descargue e instale **Android Studio (Otter 2 Feature Drop)**.
+2. Durante el asistente de instalación, asegúrese de que estén seleccionados: **Android SDK**, **Android SDK Platform** y **Android Virtual Device**.
+3. **Instalación de Plugins:** Abra el programa, vaya a *Settings > Plugins* y busque e instale el plugin de **Flutter** (esto instalará automáticamente el de **Dart**).
+
+#### 3. Configuración de VSCode
+1. Instale **VSCode (versión 1.118.1)**.
+2. Vaya a la pestaña de extensiones (`Ctrl+Shift+X`) e instale la extensión oficial de **Flutter**.
+3. Reinicie el editor para que se activen todas las herramientas de desarrollo.
+
+#### 4. Verificación Final
+Desde la carpeta raíz del repositorio en su terminal, ejecute:
+* `flutter pub get`: Para descargar todas las librerías y dependencias necesarias.
+* `flutter doctor`: Para confirmar que el IDE, el SDK y los emuladores estén vinculados y listos para trabajar.
 
 ## Casos de Uso por Paquete
 
