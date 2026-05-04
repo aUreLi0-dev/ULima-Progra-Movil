@@ -43,9 +43,21 @@ Para asegurar la correcta ejecución del proyecto, siga estos pasos de configura
 4. Abra una terminal y ejecute `flutter doctor` para verificar que el SDK esté correctamente configurado.
 
 #### 2. Configuración de Android Studio
+
 1. Descargue e instale **Android Studio (Otter 2 Feature Drop)**.
-2. Durante el asistente de instalación, asegúrese de que estén seleccionados: **Android SDK**, **Android SDK Platform** y **Android Virtual Device**.
+2. Diríjase a *SDK Manager > SDK Tools*, asegúrese de que estén seleccionados:  
+   - **Android SDK Build-Tools**  
+   - **Android SDK Platform-Tools**  
+   - **Android Virtual Device**  
+   - **Android SDK Command-line Tools (latest)**  
+   - **Android Emulator**  
+   - **Android Emulator hypervisor driver (installer)**
+<div align="center">
+<img src="assets/SDK Tools.png" alt="SDK Tools" width="700"/>
+</div>
 3. **Instalación de Plugins:** Abra el programa, vaya a *Settings > Plugins* y busque e instale el plugin de **Flutter** (esto instalará automáticamente el de **Dart**).
+
+
 
 #### 3. Configuración de VSCode
 1. Instale **VSCode (versión 1.118.1)**.
