@@ -55,8 +55,8 @@ Para asegurar la correcta ejecución del proyecto, siga estos pasos de configura
 <div align="center">
 <img src="assets/SDK Tools.png" alt="SDK Tools" width="700"/>
 </div>
-3. **Instalación de Plugins:** Abra el programa, vaya a *Settings > Plugins* y busque e instale el plugin de **Flutter** (esto instalará automáticamente el de **Dart**).
 
+3. **Instalación de Plugins:** Abra el programa, vaya a *Settings > Plugins* y busque e instale el plugin de **Flutter** (esto instalará automáticamente el de **Dart**).
 
 
 #### 3. Configuración de VSCode
