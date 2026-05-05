@@ -299,7 +299,7 @@ La arquitectura implementa un modelo de **cliente-servidor distribuido** con sep
 
 > Esta sección presenta la propuesta de diseño de la interfaz de usuario (IU) para **ULima++**, basada en el prototipo desarrollado en Figma.
 >
-> Video demostratrivo: https://drive.google.com/file/d/1Ud0QhYXlN042FXot4d3tmKxhiTqTsK9D/view?usp=sharing
+> Video demostratrivo: https://drive.google.com/file/d/1bGTRMExhHZ1AsrDhI6LxNjelqr9DeJNx/view?usp=sharing
 
 
 ## Registro e Inicio de Sesión
