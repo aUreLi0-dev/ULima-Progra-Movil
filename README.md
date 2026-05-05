@@ -72,7 +72,7 @@ Desde la carpeta raíz del repositorio en su terminal, ejecute:
 
 ### Paquete Autenticación y Seguridad
 Este paquete contiene los casos de uso correspondientes a la Autenticación y Seguridad. Aquí se incluyen los casos de uso que permitirán validar que el usuario ingrese al sistema con sus datos personales y se valide su información.
-| Item |  RF relacionado(s) | Nombre | Caso de Uso |
+| Item | Nombre | Caso de Uso | Req. Funcional relacionado |
 | :--- | :--- | :--- | :--- |
 | **CU1** | **Iniciar sesión** | El propósito de este caso de uso es permitir a los usuarios registrados acceder al sistema mediante sus credenciales y contraseña. |1 |
 | **CU2** | **Cerrar sesión** | El propósito de este caso de uso es permitir al usuario finalizar su sesión activa, protegiendo su información. | 2 |
@@ -83,7 +83,7 @@ Este paquete contiene los casos de uso correspondientes a la Autenticación y Se
 
 ### Paquete Gestión del Perfil Académico
 Este paquete contiene los casos de uso relacionados con la gestión de la información académica del estudiante dentro del sistema. En este paquete se incluyen los casos de uso que permiten al estudiante configurar y mantener actualizados sus datos académicos, tales como carrera, especialidades y preferencias curriculares. 
-| Item | Nombre | Caso de Uso | RF relacionado(s) |
+| Item | Nombre | Caso de Uso | Req. Funcional relacionado |
 | :--- | :--- | :--- | :--- |
 | **CU3** | **Seleccionar Carrera** | El propósito de este caso de uso es permitir al alumnado seleccionar su carrera universitaria dentro del sistema, lo cual habilita la carga de la malla curricular correspondiente y define el conjunto de cursos obligatorios y electivos que el estudiante deberá cursar. | 3 |
 | **CU4** | **Seleccionar Especialidades** | El propósito de este caso de uso es permitir al alumnado seleccionar una o más especialidades asociadas a su carrera, con el fin de personalizar su trayectoria académica, definiendo los cursos electivos que deberá cursar. |12 |
@@ -95,7 +95,7 @@ Este paquete contiene los casos de uso relacionados con la gestión de la inform
 
 ### Paquete Gestión de Malla Curricular
 En este paquete los casos de uso van relacionados a la visualización y administración del avance académico del alumno dentro de su plan de estudio. En este paquete se brinda un entorno didáctico e informativo.
-| Item | Nombre | Caso de Uso | RF relacionado(s) |
+| Item | Nombre | Caso de Uso | Req. Funcional relacionado |
 | :--- | :--- | :--- | :--- | 
 | **CU6** | **Visualizar malla curricular** | El propósito de este caso de uso es permitir que el estudiante pueda ver su avance en su carrera, cursos que ha culminado o cursos que tiene disponibles para llevar en su ciclo regular. | 4 |
 | **CU7** | **Actualizar estado de cursos** | El propósito de este caso de uso es permitir seleccionar el estado que se encuentran los cursos del alumnado (Disponible, En Proceso o Finalizado), con el fin de actualizar su avance. |5 |
@@ -108,7 +108,7 @@ En este paquete los casos de uso van relacionados a la visualización y administ
 
 ### Paquete Seguimiento Académico
 En este paquete los casos de uso están orientados al registro, visualización y control del rendimiento académico del alumnado durante el desarrollo de sus cursos. Permite gestionar información como notas, sílabos, promedios y evaluaciones, brindando herramientas que facilitan el seguimiento continuo del progreso académico y las evaluaciones durante el ciclo.
-| Item | Nombre | Caso de Uso | RF relacionado(s) |
+| Item | Nombre | Caso de Uso | Req. Funcional relacionado |
 | :--- | :--- | :--- | :--- |
 | **CU10** | **Ingresar notas por examen** | El propósito de este caso de uso es ingresar las notas por evaluación para simular el rendimiento académico esperado en los cursos matriculados. | 6 |
 | **CU11** | **Subir sílabo por Curso** | El propósito de este caso de uso es permitir seleccionar el estado que se encuentran los cursos del alumnado (Disponible, En Proceso o Finalizado), con el fin de actualizar su avance. | 7 y 8 |
@@ -122,7 +122,7 @@ En este paquete los casos de uso están orientados al registro, visualización y
 
 ### Paquete Análisis de Riesgo Académico
 En este paquete los casos de uso están enfocados en la identificación temprana de situaciones que puedan afectar el rendimiento académico del alumnado. A través del análisis del progreso en los cursos y la carga académica, el sistema genera alertas preventivas que permiten al estudiante tomar decisiones oportunas para mejorar su desempeño o evitar sobrecarga académica.
-| Item | Nombre | Caso de Uso | RF relacionado(s) |
+| Item | Nombre | Caso de Uso | Req. Funcional relacionado |
 | :--- | :--- | :--- | :--- |
 | **CU15** | **Recibir Alertas** | El propósito de este caso de uso es notificar automáticamente al estudiante sobre situaciones de riesgo académico, ya sea por bajo rendimiento (cuando el promedio es crítico al superar el 50% del curso) o por la detección anticipada de semanas de alta carga académica (cuando se detectan tres o más evaluaciones en una semana), permitiéndole tomar medidas correctivas o preventivas a tiempo. | 15, 16, 22 y 23 |
 
@@ -132,7 +132,7 @@ En este paquete los casos de uso están enfocados en la identificación temprana
 
 ### Paquete Gestión de Sección
 En este paquete los casos de uso están relacionados con la comunicación y gestión académica dentro de una sección de clase. Permite a los delegados y subdelegados coordinar información relevante, mientras que los estudiantes pueden mantenerse informados sobre actividades, anuncios y el desempeño general del grupo, promoviendo una mejor organización y colaboración académica.
-| Item | Nombre | Caso de Uso | RF relacionado(s) |
+| Item | Nombre | Caso de Uso | Req. Funcional relacionado |
 | :--- | :--- | :--- | :--- |
 | **CU16** | **Registrar Anuncios** | El propósito de este caso de uso es permitir al delegado/subdelegado registrar y enviar anuncios al alumnado.  | 17 |
 | **CU17** | **Visualizar Anuncios** | El propósito de este caso de uso es permitir al alumnado ver los anuncios académicos realizados por los delegados de las secciones. | 18 |
