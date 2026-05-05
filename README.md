@@ -219,6 +219,26 @@ En este paquete los casos de uso están relacionados con la comunicación y gest
 | R22 |   |   |   |   |   |   |   |   |   |   |   |   |   |   | X |   |   |   |
 | R23 |   |   |   |   |   |   |   |   |   |   |   |   |   |   | X |   |   |   |
 
+## Diseño de Lógica y Datos
+
+Para asegurar que los requisitos funcionales tengan un soporte técnico sólido, se han definido los siguientes modelos que rigen la estructura del sistema:
+
+### Diagrama de Clases
+Este diagrama define la estructura de objetos en Dart/Flutter. Representa cómo entidades como `Alumno`, `Curso`, `Nota` y `Sección` interactúan lógicamente para procesar la información académica.
+
+<div align="center">
+<img src="assets/arquitectura/diagramaClases.png" width="700"/>
+</div>
+
+### Diagrama Entidad-Relación (Base de Datos)
+Este modelo asegura la integridad de los datos de las evaluaciones, sílabos y registros de usuarios.
+
+<div align="center">
+<img src="assets/arquitectura/diagramaER.png" width="700"/>
+</div>
+
+---
+
 ## Diagrama de Despliegue
 
 ### Descripción General
