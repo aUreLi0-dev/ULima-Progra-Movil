@@ -6,9 +6,8 @@ App móvil diseñada para estudiantes de la Universidad de Lima que facilita la 
 ## Tabla de Contenidos
 * [Descripcion del entorno de desarrollo](#descripcion-del-entorno-de-desarrollo)
 * [Casos de Uso por Paquete](#casos-de-uso-por-paquete)
-* [Requerimientos Funcionales](#requerimientos-funcionales)
-* [Requerimientos No Funcionales](#requerimientos-no-funcionales)
-* [Matriz de Trazabilidad](#matriz-de-trazabilidad)
+* [Catálogo de Requerimientos](#catálogo-de-requerimientos)
+* [Diseño de Lógica y Datos](#diseño-de-lógica-y-datos)
 * [Diagrama de Despliegue](#diagrama-de-despliegue)
 * [Mockups](#mockups)
 
@@ -73,10 +72,10 @@ Desde la carpeta raíz del repositorio en su terminal, ejecute:
 
 ### Paquete Autenticación y Seguridad
 Este paquete contiene los casos de uso correspondientes a la Autenticación y Seguridad. Aquí se incluyen los casos de uso que permitirán validar que el usuario ingrese al sistema con sus datos personales y se valide su información.
-| Item | Nombre | Caso de Uso |
-| :--- | :--- | :--- |
-| **CU1** | **Iniciar sesión** | El propósito de este caso de uso es permitir a los usuarios registrados acceder al sistema mediante sus credenciales y contraseña. |
-| **CU2** | **Cerrar sesión** | El propósito de este caso de uso es permitir al usuario finalizar su sesión activa, protegiendo su información. |
+| Item |  RF relacionado(s) | Nombre | Caso de Uso |
+| :--- | :--- | :--- | :--- |
+| **CU1** | **Iniciar sesión** | El propósito de este caso de uso es permitir a los usuarios registrados acceder al sistema mediante sus credenciales y contraseña. |1 |
+| **CU2** | **Cerrar sesión** | El propósito de este caso de uso es permitir al usuario finalizar su sesión activa, protegiendo su información. | 2 |
 
 <div align="center">
 <img src="assets/casos_uso/Autenticacion_Seguridad.png" width="500"/>
@@ -84,11 +83,11 @@ Este paquete contiene los casos de uso correspondientes a la Autenticación y Se
 
 ### Paquete Gestión del Perfil Académico
 Este paquete contiene los casos de uso relacionados con la gestión de la información académica del estudiante dentro del sistema. En este paquete se incluyen los casos de uso que permiten al estudiante configurar y mantener actualizados sus datos académicos, tales como carrera, especialidades y preferencias curriculares. 
-| Item | Nombre | Caso de Uso |
-| :--- | :--- | :--- |
-| **CU3** | **Seleccionar Carrera** | El propósito de este caso de uso es permitir al alumnado seleccionar su carrera universitaria dentro del sistema, lo cual habilita la carga de la malla curricular correspondiente y define el conjunto de cursos obligatorios y electivos que el estudiante deberá cursar. |
-| **CU4** | **Seleccionar Especialidades** | El propósito de este caso de uso es permitir al alumnado seleccionar una o más especialidades asociadas a su carrera, con el fin de personalizar su trayectoria académica, definiendo los cursos electivos que deberá cursar. |
-| **CU5** | **Visualizar Cursos Electivos por Especialidad** | El propósito de este caso de uso es mostrar al usuario los cursos electivos correspondientes a la especialidad seleccionada, actualizando dinámicamente la información presentada en la malla curricular y facilitando la planificación académica del estudiante. |
+| Item | Nombre | Caso de Uso | RF relacionado(s) |
+| :--- | :--- | :--- | :--- |
+| **CU3** | **Seleccionar Carrera** | El propósito de este caso de uso es permitir al alumnado seleccionar su carrera universitaria dentro del sistema, lo cual habilita la carga de la malla curricular correspondiente y define el conjunto de cursos obligatorios y electivos que el estudiante deberá cursar. | 3 |
+| **CU4** | **Seleccionar Especialidades** | El propósito de este caso de uso es permitir al alumnado seleccionar una o más especialidades asociadas a su carrera, con el fin de personalizar su trayectoria académica, definiendo los cursos electivos que deberá cursar. |12 |
+| **CU5** | **Visualizar Cursos Electivos por Especialidad** | El propósito de este caso de uso es mostrar al usuario los cursos electivos correspondientes a la especialidad seleccionada, actualizando dinámicamente la información presentada en la malla curricular y facilitando la planificación académica del estudiante. | 13 |
 
 <div align="center">
 <img src="assets/casos_uso/Perfil_Academico.png" width="500"/>
@@ -96,12 +95,12 @@ Este paquete contiene los casos de uso relacionados con la gestión de la inform
 
 ### Paquete Gestión de Malla Curricular
 En este paquete los casos de uso van relacionados a la visualización y administración del avance académico del alumno dentro de su plan de estudio. En este paquete se brinda un entorno didáctico e informativo.
-| Item | Nombre | Caso de Uso |
-| :--- | :--- | :--- |
-| **CU6** | **Visualizar malla curricular** | El propósito de este caso de uso es permitir que el estudiante pueda ver su avance en su carrera, cursos que ha culminado o cursos que tiene disponibles para llevar en su ciclo regular. |
-| **CU7** | **Actualizar estado de cursos** | El propósito de este caso de uso es permitir seleccionar el estado que se encuentran los cursos del alumnado (Disponible, En Proceso o Finalizado), con el fin de actualizar su avance. |
-| **CU8** | **Visualizar cursos hábiles** | El propósito de este caso de uso es mostrar al estudiante los cursos que se encuentran disponibles para ser cursados, basándose en el cumplimiento de cursos prerrequisitos establecidos en la malla curricular. |
-| **CU9** | **Visualizar estado de cursos** | El propósito de este caso de uso es permitir al usuario consultar la situación actual de cada curso (Pendiente, Disponible, En Proceso, Finalizado) para un seguimiento detallado. |
+| Item | Nombre | Caso de Uso | RF relacionado(s) |
+| :--- | :--- | :--- | :--- | 
+| **CU6** | **Visualizar malla curricular** | El propósito de este caso de uso es permitir que el estudiante pueda ver su avance en su carrera, cursos que ha culminado o cursos que tiene disponibles para llevar en su ciclo regular. | 4 |
+| **CU7** | **Actualizar estado de cursos** | El propósito de este caso de uso es permitir seleccionar el estado que se encuentran los cursos del alumnado (Disponible, En Proceso o Finalizado), con el fin de actualizar su avance. |5 |
+| **CU8** | **Visualizar cursos hábiles** | El propósito de este caso de uso es mostrar al estudiante los cursos que se encuentran disponibles para ser cursados, basándose en el cumplimiento de cursos prerrequisitos establecidos en la malla curricular. | 10 |
+| **CU9** | **Visualizar estado de cursos** | El propósito de este caso de uso es permitir al usuario consultar la situación actual de cada curso (Pendiente, Disponible, En Proceso, Finalizado) para un seguimiento detallado. |11 |
 
 <div align="center">
 <img src="assets/casos_uso/Malla_Curricular.png" width="500"/>
@@ -109,13 +108,13 @@ En este paquete los casos de uso van relacionados a la visualización y administ
 
 ### Paquete Seguimiento Académico
 En este paquete los casos de uso están orientados al registro, visualización y control del rendimiento académico del alumnado durante el desarrollo de sus cursos. Permite gestionar información como notas, sílabos, promedios y evaluaciones, brindando herramientas que facilitan el seguimiento continuo del progreso académico y las evaluaciones durante el ciclo.
-| Item | Nombre | Caso de Uso |
-| :--- | :--- | :--- |
-| **CU10** | **Ingresar notas por examen** | El propósito de este caso de uso es ingresar las notas por evaluación para simular el rendimiento académico esperado en los cursos matriculados. |
-| **CU11** | **Subir sílabo por Curso** | El propósito de este caso de uso es permitir seleccionar el estado que se encuentran los cursos del alumnado (Disponible, En Proceso o Finalizado), con el fin de actualizar su avance. |
-| **CU12** | **Visualizar promedio por Curso** | El propósito de este caso de uso es permitir al estudiante visualizar el promedio  de los cursos que esté llevando en el ciclo. |
-| **CU13** | **Visualizar horarios de asesoría** | El propósito de este caso de uso es que el alumnado pueda visualizar el horario de asesorías de clases matriculadas en el detalle del curso correspondiente, con el objetivo de que pueda organizar mejor su tiempo académico. |
-| **CU14** | **Visualizar lista de exámenes** | El propósito de este caso de uso es permitir al alumnado visualizar los exámenes del ciclo en su calendario personal, ordenados según la semana y día de cada evaluación. |
+| Item | Nombre | Caso de Uso | RF relacionado(s) |
+| :--- | :--- | :--- | :--- |
+| **CU10** | **Ingresar notas por examen** | El propósito de este caso de uso es ingresar las notas por evaluación para simular el rendimiento académico esperado en los cursos matriculados. | 6 |
+| **CU11** | **Subir sílabo por Curso** | El propósito de este caso de uso es permitir seleccionar el estado que se encuentran los cursos del alumnado (Disponible, En Proceso o Finalizado), con el fin de actualizar su avance. | 7 y 8 |
+| **CU12** | **Visualizar promedio por Curso** | El propósito de este caso de uso es permitir al estudiante visualizar el promedio  de los cursos que esté llevando en el ciclo. | 9 y 11 |
+| **CU13** | **Visualizar horarios de asesoría** | El propósito de este caso de uso es que el alumnado pueda visualizar el horario de asesorías de clases matriculadas en el detalle del curso correspondiente, con el objetivo de que pueda organizar mejor su tiempo académico. | 20 |
+| **CU14** | **Visualizar lista de exámenes** | El propósito de este caso de uso es permitir al alumnado visualizar los exámenes del ciclo en su calendario personal, ordenados según la semana y día de cada evaluación. |19|
 
 <div align="center">
 <img src="assets/casos_uso/Seguimiento_Academico.png" width="500"/>
@@ -123,9 +122,9 @@ En este paquete los casos de uso están orientados al registro, visualización y
 
 ### Paquete Análisis de Riesgo Académico
 En este paquete los casos de uso están enfocados en la identificación temprana de situaciones que puedan afectar el rendimiento académico del alumnado. A través del análisis del progreso en los cursos y la carga académica, el sistema genera alertas preventivas que permiten al estudiante tomar decisiones oportunas para mejorar su desempeño o evitar sobrecarga académica.
-| Item | Nombre | Caso de Uso |
-| :--- | :--- | :--- |
-| **CU15** | **Recibir Alertas** | El propósito de este caso de uso es notificar automáticamente al estudiante sobre situaciones de riesgo académico, ya sea por bajo rendimiento (cuando el promedio es crítico al superar el 50% del curso) o por la detección anticipada de semanas de alta carga académica (cuando se detectan tres o más evaluaciones en una semana), permitiéndole tomar medidas correctivas o preventivas a tiempo. |
+| Item | Nombre | Caso de Uso | RF relacionado(s) |
+| :--- | :--- | :--- | :--- |
+| **CU15** | **Recibir Alertas** | El propósito de este caso de uso es notificar automáticamente al estudiante sobre situaciones de riesgo académico, ya sea por bajo rendimiento (cuando el promedio es crítico al superar el 50% del curso) o por la detección anticipada de semanas de alta carga académica (cuando se detectan tres o más evaluaciones en una semana), permitiéndole tomar medidas correctivas o preventivas a tiempo. | 15, 16, 22 y 23 |
 
 <div align="center">
 <img src="assets/casos_uso/Riesgo_Academico.png" width="500"/>
@@ -133,11 +132,11 @@ En este paquete los casos de uso están enfocados en la identificación temprana
 
 ### Paquete Gestión de Sección
 En este paquete los casos de uso están relacionados con la comunicación y gestión académica dentro de una sección de clase. Permite a los delegados y subdelegados coordinar información relevante, mientras que los estudiantes pueden mantenerse informados sobre actividades, anuncios y el desempeño general del grupo, promoviendo una mejor organización y colaboración académica.
-| Item | Nombre | Caso de Uso |
-| :--- | :--- | :--- |
-| **CU16** | **Registrar Anuncios** | El propósito de este caso de uso es permitir al delegado/subdelegado registrar y enviar anuncios al alumnado.  |
-| **CU17** | **Visualizar Anuncios** | El propósito de este caso de uso es permitir al alumnado ver los anuncios académicos realizados por los delegados de las secciones. |
-| **CU18** | **Visualizar promedios de la sección** | El propósito de este caso de uso es que el delegado/subdelegado visualice la distribución general de las calificaciones del curso mediante un *dashboard*, con el fin de analizar el rendimiento sin mostrar datos individuales. |
+| Item | Nombre | Caso de Uso | RF relacionado(s) |
+| :--- | :--- | :--- | :--- |
+| **CU16** | **Registrar Anuncios** | El propósito de este caso de uso es permitir al delegado/subdelegado registrar y enviar anuncios al alumnado.  | 17 |
+| **CU17** | **Visualizar Anuncios** | El propósito de este caso de uso es permitir al alumnado ver los anuncios académicos realizados por los delegados de las secciones. | 18 |
+| **CU18** | **Visualizar promedios de la sección** | El propósito de este caso de uso es que el delegado/subdelegado visualice la distribución general de las calificaciones del curso mediante un *dashboard*, con el fin de analizar el rendimiento sin mostrar datos individuales. | 14 y 21 |
 
 <div align="center">
 <img src="assets/casos_uso/Gestion_Seccion.png" width="500"/>
