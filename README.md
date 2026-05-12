@@ -226,14 +226,14 @@ Para asegurar que los requisitos funcionales tengan un soporte técnico sólido,
 Este diagrama define la estructura de objetos en Dart/Flutter. Representa cómo entidades como `Alumno`, `Curso`, `Nota` y `Sección` interactúan lógicamente para procesar la información académica.
 
 <div align="center">
-<img src="assets/arquitectura/diagramaClases.png" width="700"/>
+<img src="assets/arquitectura/diagramaClases.png" width="800"/>
 </div>
 
 ### Diagrama Entidad-Relación (Base de Datos)
 Este modelo asegura la integridad de los datos de las evaluaciones, sílabos y registros de usuarios.
 
 <div align="center">
-<img src="assets/arquitectura/diagramaER.png" width="700"/>
+<img src="assets/arquitectura/diagrama db.png" width="800"/>
 </div>
 
 ---
