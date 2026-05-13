@@ -19,7 +19,7 @@ App móvil diseñada para estudiantes de la Universidad de Lima que facilita la 
 Para garantizar una experiencia de usuario (UX) coherente y una identidad visual sólida, se utilizaron:
 
 * **Figma:** Utilizado para el diseño de interfaces (UI), prototipado de alta fidelidad y definición del sistema de diseño (colores, tipografía y componentes).
-* **Inkscape:** Herramienta de vectores utilizada específicamente para el diseño de logotipos e iconografía personalizada del proyecto, exportando assets en formato `.svg`.
+* **Inkscape:** Herramienta de vectores utilizada específicamente para el diseño de logotipos e iconografía personalizada del proyecto, exportando docs/images en formato `.svg`.
 ---
 
 ### Stack de Desarrollo Mobile
@@ -52,7 +52,7 @@ Para asegurar la correcta ejecución del proyecto, siga estos pasos de configura
    - **Android Emulator**  
    - **Android Emulator hypervisor driver (installer)**
 <div align="center">
-<img src="assets/SDK Tools.png" alt="SDK Tools" width="700"/>
+<img src="docs/images/SDK Tools.png" alt="SDK Tools" width="700"/>
 </div>
 
 3. **Instalación de Plugins:** Abra el programa, vaya a *Settings > Plugins* y busque e instale el plugin de **Flutter** (esto instalará automáticamente el de **Dart**).
@@ -78,7 +78,7 @@ Este paquete contiene los casos de uso correspondientes a la Autenticación y Se
 | **CU2** | **Cerrar sesión** | El propósito de este caso de uso es permitir al usuario finalizar su sesión activa, protegiendo su información. | 2 |
 
 <div align="center">
-<img src="assets/casos_uso/Autenticacion_Seguridad.png" width="500"/>
+<img src="docs/images/casos_uso/Autenticacion_Seguridad.png" width="500"/>
 </div>
 
 ### Paquete Gestión del Perfil Académico
@@ -90,7 +90,7 @@ Este paquete contiene los casos de uso relacionados con la gestión de la inform
 | **CU5** | **Visualizar Cursos Electivos por Especialidad** | El propósito de este caso de uso es mostrar al usuario los cursos electivos correspondientes a la especialidad seleccionada, actualizando dinámicamente la información presentada en la malla curricular y facilitando la planificación académica del estudiante. | 13 |
 
 <div align="center">
-<img src="assets/casos_uso/Perfil_Academico.png" width="500"/>
+<img src="docs/images/casos_uso/Perfil_Academico.png" width="500"/>
 </div>
 
 ### Paquete Gestión de Malla Curricular
@@ -103,7 +103,7 @@ En este paquete los casos de uso van relacionados a la visualización y administ
 | **CU9** | **Visualizar estado de cursos** | El propósito de este caso de uso es permitir al usuario consultar la situación actual de cada curso (Pendiente, Disponible, En Proceso, Finalizado) para un seguimiento detallado. |11 |
 
 <div align="center">
-<img src="assets/casos_uso/Malla_Curricular.png" width="500"/>
+<img src="docs/images/casos_uso/Malla_Curricular.png" width="500"/>
 </div>
 
 ### Paquete Seguimiento Académico
@@ -117,7 +117,7 @@ En este paquete los casos de uso están orientados al registro, visualización y
 | **CU14** | **Visualizar lista de exámenes** | El propósito de este caso de uso es permitir al alumnado visualizar los exámenes del ciclo en su calendario personal, ordenados según la semana y día de cada evaluación. |19|
 
 <div align="center">
-<img src="assets/casos_uso/Seguimiento_Academico.png" width="500"/>
+<img src="docs/images/casos_uso/Seguimiento_Academico.png" width="500"/>
 </div>
 
 ### Paquete Análisis de Riesgo Académico
@@ -127,7 +127,7 @@ En este paquete los casos de uso están enfocados en la identificación temprana
 | **CU15** | **Recibir Alertas** | El propósito de este caso de uso es notificar automáticamente al estudiante sobre situaciones de riesgo académico, ya sea por bajo rendimiento (cuando el promedio es crítico al superar el 50% del curso) o por la detección anticipada de semanas de alta carga académica (cuando se detectan tres o más evaluaciones en una semana), permitiéndole tomar medidas correctivas o preventivas a tiempo. | 15, 16, 22 y 23 |
 
 <div align="center">
-<img src="assets/casos_uso/Riesgo_Academico.png" width="500"/>
+<img src="docs/images/casos_uso/Riesgo_Academico.png" width="500"/>
 </div>
 
 ### Paquete Gestión de Sección
@@ -139,7 +139,7 @@ En este paquete los casos de uso están relacionados con la comunicación y gest
 | **CU18** | **Visualizar promedios de la sección** | El propósito de este caso de uso es que el delegado/subdelegado visualice la distribución general de las calificaciones del curso mediante un *dashboard*, con el fin de analizar el rendimiento sin mostrar datos individuales. | 14 y 21 |
 
 <div align="center">
-<img src="assets/casos_uso/Gestion_Seccion.png" width="500"/>
+<img src="docs/images/casos_uso/Gestion_Seccion.png" width="500"/>
 </div>
 
 ## Catálogo de Requerimientos
@@ -226,14 +226,14 @@ Para asegurar que los requisitos funcionales tengan un soporte técnico sólido,
 Este diagrama define la estructura de objetos en Dart/Flutter. Representa cómo entidades como `Alumno`, `Curso`, `Nota` y `Sección` interactúan lógicamente para procesar la información académica.
 
 <div align="center">
-<img src="assets/arquitectura/diagramaClases.png" width="800"/>
+<img src="docs/images/arquitectura/diagramaClases.png" width="700"/>
 </div>
 
 ### Diagrama Entidad-Relación (Base de Datos)
 Este modelo asegura la integridad de los datos de las evaluaciones, sílabos y registros de usuarios.
 
 <div align="center">
-<img src="assets/arquitectura/diagrama db.png" width="800"/>
+<img src="docs/images/arquitectura/diagramaER.png" width="700"/>
 </div>
 
 ---
@@ -291,9 +291,9 @@ La arquitectura implementa un modelo de **cliente-servidor distribuido** con sep
 
 <div align="center">
 
-![Diagrama de Despliegue ULima++](assets/arquitectura/diagrama_despliegue.png)
+![Diagrama de Despliegue ULima++](docs/images/arquitectura/diagrama_despliegue.png)
 
-> **Especificación técnica:** [`diagrama_despliegue.puml`](assets/arquitectura/diagrama_despliegue.puml)
+> **Especificación técnica:** [`diagrama_despliegue.puml`](docs/images/arquitectura/diagrama_despliegue.puml)
 
 </div>
 
@@ -326,7 +326,7 @@ La arquitectura implementa un modelo de **cliente-servidor distribuido** con sep
 
 | Inicio de Sesión | Configuración de carrera |
 | :---: | :---: |
-| <img src="assets/UI/InicioSesion.png" width="300"/> | <img src="assets/UI/ConfiguracionCarrera.png" width="290"/>
+| <img src="docs/images/UI/InicioSesion.png" width="300"/> | <img src="docs/images/UI/ConfiguracionCarrera.png" width="290"/>
 
 </div>
 
@@ -337,7 +337,7 @@ La arquitectura implementa un modelo de **cliente-servidor distribuido** con sep
 
 | Malla Curricular | Calculadora de Notas | Horario Académico |
 | :---: | :---: | :---: |
-| <img src="assets/UI/MallaCurricular.png" width="250"/> | <img src="assets/UI/CalculadoraNotas.png" width="240"/> | <img src="assets/UI/HorarioAcademico_Evaluaciones.png" width="250"/> |
+| <img src="docs/images/UI/MallaCurricular.png" width="250"/> | <img src="docs/images/UI/CalculadoraNotas.png" width="240"/> | <img src="docs/images/UI/HorarioAcademico_Evaluaciones.png" width="250"/> |
 
 </div>
 
@@ -348,7 +348,7 @@ La arquitectura implementa un modelo de **cliente-servidor distribuido** con sep
 
 | Gestión de Sílabo | Agregar Nota | Visualización de Notas |
 | :---: | :---: | :---: |
-| <img src="assets/UI/SubirSilabo.png" width="250"/> | <img src="assets/UI/AgregarNota.png" width="250"/> | <img src="assets/UI/NotasPorCurso.png" width="250"/> |
+| <img src="docs/images/UI/SubirSilabo.png" width="250"/> | <img src="docs/images/UI/AgregarNota.png" width="250"/> | <img src="docs/images/UI/NotasPorCurso.png" width="250"/> |
 
 
 </div>
@@ -358,7 +358,7 @@ La arquitectura implementa un modelo de **cliente-servidor distribuido** con sep
 
 | Anuncios | Asesorias | Contactos |
 | :---: | :---: | :---: |
-| <img src="assets/UI/Anuncios.png" width="250"/> | <img src="assets/UI/Asesorias.png" width="250"/> | <img src="assets/UI/Contactos.png" width="250"/> | 
+| <img src="docs/images/UI/Anuncios.png" width="250"/> | <img src="docs/images/UI/Asesorias.png" width="250"/> | <img src="docs/images/UI/Contactos.png" width="250"/> | 
 
 </div>
 
@@ -367,7 +367,7 @@ La arquitectura implementa un modelo de **cliente-servidor distribuido** con sep
 
 | Perfil | Buzón de Alertas |
 | :---: | :---: |
-| <img src="assets/UI/Perfil.png" width="250"/> | <img src="assets/UI/BuzonAlertas.png" width="250"/> |
+| <img src="docs/images/UI/Perfil.png" width="250"/> | <img src="docs/images/UI/BuzonAlertas.png" width="250"/> |
 
 
 </div>
@@ -380,7 +380,7 @@ El actor 'Delegado' contará con un módulo exclusivo que integra las siguientes
 
 | Gestión de Cursos | Gestion de Anuncios | Seguimiento de Progreso de Sección |
 | :---: | :---: | :---: |
-| <img src="assets/UI/GestionCursosDelegado.png" width="250"/> | <img src="assets/UI/GestionAnunciosDelegado.png" width="250"/> | <img src="assets/UI/SeguimientoProgresoSeccion.png" width="250"/> |
+| <img src="docs/images/UI/GestionCursosDelegado.png" width="250"/> | <img src="docs/images/UI/GestionAnunciosDelegado.png" width="250"/> | <img src="docs/images/UI/SeguimientoProgresoSeccion.png" width="250"/> |
 
 </div>
 
