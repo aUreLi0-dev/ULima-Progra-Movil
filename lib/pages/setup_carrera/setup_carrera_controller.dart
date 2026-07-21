@@ -1,24 +1,16 @@
-// lib/pages/setup_carrera/setup_carrera_controller.dart
-// CU3 + CU4 – configuración de carrera y especialidades.
-
 import 'package:get/get.dart';
 
+import '../../services/api_service.dart';
 import '../../services/auth_service.dart';
 
 class SetupCarreraController extends GetxController {
-  final carreras = const <String>[
-    'Ingeniería de Sistemas',
-  ];
+  final carreras = <Map<String, dynamic>>[].obs;
+  final especialidadesDisponibles = <Map<String, dynamic>>[].obs;
+  final cargandoCarreras = false.obs;
+  final cargandoEspecialidades = false.obs;
 
-  final especialidadesDisponibles = const <String>[
-    'Desarrollo de Software',
-    'Ciberseguridad',
-    'Ciencia de Datos',
-    'Tecnologías de la Información',
-  ];
-
-  final selectedCarrera = RxnString();
-  final selectedEspecialidades = <String>{}.obs;
+  final selectedCarreraId = RxnInt();
+  final selectedEspecialidadIds = <int>{}.obs;
   final errorMessage = RxnString();
   final saving = false.obs;
 
@@ -27,38 +19,71 @@ class SetupCarreraController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    // Si el usuario ya tenía carrera previa (por si vuelve a setup), la pre-cargamos
-    final u = _auth.currentUser;
-    if (u?.career != null && carreras.contains(u!.career)) {
-      selectedCarrera.value = u.career;
-    }
-    if (u?.especialidades.isNotEmpty == true) {
-      selectedEspecialidades.assignAll(u!.especialidades);
+    _cargarCarreras();
+  }
+
+  Future<void> _cargarCarreras() async {
+    cargandoCarreras.value = true;
+    try {
+      final api = ApiService.to;
+      final response = await api.get('/api/v1/careers');
+      if (response.success && response.data != null) {
+        carreras.value = List<Map<String, dynamic>>.from(response.data as List);
+      }
+    } finally {
+      cargandoCarreras.value = false;
     }
   }
 
-  void toggleEspecialidad(String esp) {
-    if (selectedEspecialidades.contains(esp)) {
-      selectedEspecialidades.remove(esp);
+  void onCarreraChanged(int? carreraId) {
+    selectedCarreraId.value = carreraId;
+    selectedEspecialidadIds.clear();
+    if (carreraId != null) {
+      _cargarEspecialidades(carreraId);
+    }
+  }
+
+  Future<void> _cargarEspecialidades(int carreraId) async {
+    cargandoEspecialidades.value = true;
+    try {
+      final api = ApiService.to;
+      final response = await api.get('/api/v1/specialties', queryParams: {'career_id': carreraId.toString()});
+      if (response.success && response.data != null) {
+        especialidadesDisponibles.value = List<Map<String, dynamic>>.from(response.data as List);
+      }
+    } finally {
+      cargandoEspecialidades.value = false;
+    }
+  }
+
+  void toggleEspecialidad(int id) {
+    if (selectedEspecialidadIds.contains(id)) {
+      selectedEspecialidadIds.remove(id);
     } else {
-      selectedEspecialidades.add(esp);
+      selectedEspecialidadIds.add(id);
     }
   }
 
   Future<void> finish() async {
-    if (selectedCarrera.value == null) {
+    if (selectedCarreraId.value == null) {
       errorMessage.value = 'Selecciona tu carrera para continuar.';
       return;
     }
     errorMessage.value = null;
     saving.value = true;
-    // Aquí podríamos persistir contra un backend en el futuro.
-    // Por ahora actualizamos el usuario en memoria.
-    _auth.completeSetup(
-      career: selectedCarrera.value!,
-      especialidades: selectedEspecialidades.toList(),
+
+    final error = await _auth.completeSetup(
+      careerId: selectedCarreraId.value!,
+      specialtyIds: selectedEspecialidadIds.toList(),
     );
+
     saving.value = false;
+
+    if (error != null) {
+      errorMessage.value = error;
+      return;
+    }
+
     Get.offAllNamed('/home');
   }
 }

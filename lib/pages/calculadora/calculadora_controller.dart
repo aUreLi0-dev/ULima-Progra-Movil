@@ -1,61 +1,81 @@
 import 'package:get/get.dart';
 import '../../models/evaluation_model.dart';
-import '../../services/evaluation_service.dart';
-import '../../services/courses_service.dart';
+import '../../services/api_service.dart';
+import '../../services/auth_service.dart';
 
 class CalculadoraController extends GetxController {
-  // Lista reactiva de cursos obtenidos del modelo
-  late var cursos = <Map<String, dynamic>>[].obs;
-  
-  // Servicio para obtener datos del sílabo
-  late EvaluationSyllabusService _syllabusService;
-  late CoursesService _coursesService;
-  
-  // Map de sílabus por curso ID para acceso rápido
-  late var syllabusData = <String, CourseSyllabus>{}.obs;
+  final cursos = <Map<String, dynamic>>[].obs;
+  final syllabusData = <String, CourseSyllabus>{}.obs;
+  final cargando = false.obs;
 
   @override
   void onInit() {
     super.onInit();
-    // Inicializa los servicios
-    _syllabusService = EvaluationSyllabusService();
-    _coursesService = CoursesService();
-    // Carga datos del sílabo
-    _cargarDatosSyllabus();
-    // Inicializa los cursos desde el servicio
-    _inicializarCursos();
+    _cargarCursos();
   }
 
-  /// Carga los datos del sílabo de forma asincrónica
-  void _cargarDatosSyllabus() async {
+  Future<void> _cargarCursos() async {
+    cargando.value = true;
     try {
-      await _syllabusService.loadEvaluationData();
-      // Poblar el map de sílabus
-      for (var syllabus in _syllabusService.allSyllabuses) {
-        syllabusData[syllabus.cursoId] = syllabus;
-      }
-      print('✓ Datos del sílabo cargados en el controlador');
-    } catch (e) {
-      print('✗ Error al cargar datos del sílabo: $e');
-    }
-  }
+      final user = AuthService.to.currentUser;
+      if (user == null) return;
 
-  void _inicializarCursos() {
-    final cursosData = _coursesService.allCourses;
-    cursos.value = cursosData.map((curso) {
-      var notasRx = <Map<String, dynamic>>[].obs;
-      if (curso['notas'] != null) {
-        notasRx.addAll(List<Map<String, dynamic>>.from(curso['notas']));
+      final api = ApiService.to;
+      final response = await api.get('/api/v1/calculator/student/${user.id}/courses');
+
+      if (response.success && response.data != null) {
+        final data = response.data as Map<String, dynamic>;
+        final coursesList = data['courses'] as List<dynamic>? ?? [];
+
+        cursos.value = await Future.wait(coursesList.map((raw) async {
+          final c = raw as Map<String, dynamic>;
+          final courseData = c['course'] as Map<String, dynamic>? ?? {};
+          final enrollmentId = c['enrollment_id'] as int? ?? 0;
+
+          final detailResponse = await api.get('/api/v1/calculator/enrollment/$enrollmentId');
+          List<Map<String, dynamic>> notas = [];
+          if (detailResponse.success && detailResponse.data != null) {
+            final detail = detailResponse.data as Map<String, dynamic>;
+            final assesments = detail['assesments'] as List<dynamic>? ?? [];
+
+            final syllabus = CourseSyllabus.fromJson(detail);
+            final courseId = courseData['id']?.toString() ?? '';
+            if (courseId.isNotEmpty) {
+              syllabusData[syllabus.cursoId] = syllabus;
+            }
+
+              for (final a in assesments) {
+                final aMap = a as Map<String, dynamic>;
+                final value = aMap['value'];
+                if (value != null) {
+                  notas.add({
+                    'simulated_grade_id': aMap['simulated_grade_id'],
+                    'titulo': aMap['assessment_name'] as String? ?? '',
+                    'peso': (aMap['weight'] as num).toInt(),
+                    'valor': (value as num).toDouble(),
+                    'assessment_id': aMap['assessment_id'],
+                  });
+                }
+              }
+          }
+
+          return {
+            'enrollment_id': enrollmentId,
+            'course_id': courseData['id'],
+            'nombre': courseData['name'] as String? ?? '',
+            'ciclo': c['academic_period_code'] as String? ?? '',
+            'seccion': c['section_code'] as String? ?? '',
+            'weighted_average': c['weighted_average'],
+            'total_weight': c['total_weight'],
+            'notas': notas.obs,
+          };
+        }).toList());
       }
-      
-      return {
-        'id': curso['id']?.toString() ?? '',
-        'nombre': curso['nombre']?.toString() ?? 'Curso sin nombre',
-        'ciclo': curso['ciclo']?.toString() ?? '',
-        'seccion': curso['seccion']?.toString() ?? 'Sin sección', 
-        'notas': notasRx,
-      };
-    }).toList();
+    } catch (e) {
+      print('Error al cargar cursos: $e');
+    } finally {
+      cargando.value = false;
+    }
   }
 
   double calcularPromedio(List notas) {
@@ -68,77 +88,98 @@ class CalculadoraController extends GetxController {
   }
 
   double sumaPesos(List notas) {
-    return notas.fold(0, (sum, item) => sum + item['peso']);
+    return notas.fold(0, (sum, item) => sum + (item['peso'] as num).toDouble());
   }
 
-  void agregarNota(int cursoIndex, String titulo, int peso, double valor, String evaluacionId) {
-    if (cursoIndex >= 0 && cursoIndex < cursos.length) {
-      final notas = cursos[cursoIndex]['notas'] as RxList<dynamic>;
+  Future<void> agregarNota(int cursoIndex, String titulo, int peso, double valor, int assessmentId) async {
+    if (cursoIndex < 0 || cursoIndex >= cursos.length) return;
+
+    final enrollmentId = cursos[cursoIndex]['enrollment_id'] as int? ?? 0;
+    if (enrollmentId == 0) return;
+
+    final api = ApiService.to;
+    final response = await api.post('/api/v1/calculator/simulated-grades', body: {
+      'enrollment_id': enrollmentId,
+      'assessment_id': assessmentId,
+      'value': valor,
+    });
+
+    if (response.success) {
+      final notas = cursos[cursoIndex]['notas'] as RxList;
+      final scoreData = response.data as Map<String, dynamic>?;
       notas.add({
+        'simulated_grade_id': scoreData?['id'],
         'titulo': titulo,
         'peso': peso,
         'valor': valor,
-        'evaluacionId': evaluacionId,
+        'assessment_id': assessmentId,
       });
       cursos.refresh();
     }
   }
 
-  void eliminarNota(int cursoIndex, int notaIndex) {
-    if (cursoIndex >= 0 && cursoIndex < cursos.length) {
-      final notas = cursos[cursoIndex]['notas'] as RxList<dynamic>;
-      if (notaIndex >= 0 && notaIndex < notas.length) {
-        notas.removeAt(notaIndex);
-        cursos.refresh();
-      }
+  Future<void> eliminarNota(int cursoIndex, int notaIndex) async {
+    if (cursoIndex < 0 || cursoIndex >= cursos.length) return;
+
+    final notas = cursos[cursoIndex]['notas'] as RxList;
+    if (notaIndex < 0 || notaIndex >= notas.length) return;
+
+    final enrollmentId = cursos[cursoIndex]['enrollment_id'] as int? ?? 0;
+    final nota = notas[notaIndex] as Map<String, dynamic>;
+    final assessmentId = nota['assessment_id'] as int? ?? 0;
+
+    if (enrollmentId > 0 && assessmentId > 0) {
+      final api = ApiService.to;
+      await api.post('/api/v1/calculator/simulated-grades', body: {
+        'enrollment_id': enrollmentId,
+        'assessment_id': assessmentId,
+        'value': null,
+      });
     }
+
+    notas.removeAt(notaIndex);
+    cursos.refresh();
   }
 
-  /// Obtiene el sílabo de un curso por su índice
   CourseSyllabus? getSyllabusForCourse(int cursoIndex) {
     if (cursoIndex >= 0 && cursoIndex < cursos.length) {
-      final cursoId = cursos[cursoIndex]['id'] as String?;
-      if (cursoId != null && syllabusData.containsKey(cursoId)) {
-        return syllabusData[cursoId];
+      final courseId = cursos[cursoIndex]['course_id']?.toString() ?? '';
+      if (courseId.isNotEmpty && syllabusData.containsKey(courseId)) {
+        return syllabusData[courseId];
       }
     }
     return null;
   }
 
-  /// Obtiene las evaluaciones disponibles de un curso
   List<EvaluationComponent> getEvaluationsForCourse(int cursoIndex) {
     final syllabus = getSyllabusForCourse(cursoIndex);
     return syllabus?.evaluaciones ?? [];
   }
 
-  /// Verifica si hay datos de sílabo cargados
   bool hasSyllabusData(int cursoIndex) {
     if (cursoIndex >= 0 && cursoIndex < cursos.length) {
-      final cursoId = cursos[cursoIndex]['id'] as String?;
-      return cursoId != null && syllabusData.containsKey(cursoId);
+      final courseId = cursos[cursoIndex]['course_id']?.toString() ?? '';
+      return courseId.isNotEmpty && syllabusData.containsKey(courseId);
     }
     return false;
   }
 
-  /// Obtiene los IDs de evaluaciones que ya tienen notas registradas
-  List<String> getRegisteredEvaluationIds(int cursoIndex) {
+  List<int> getRegisteredAssessmentIds(int cursoIndex) {
     if (cursoIndex >= 0 && cursoIndex < cursos.length) {
       final notas = cursos[cursoIndex]['notas'] as List?;
       return (notas ?? [])
-          .map((nota) => nota['evaluacionId'] as String? ?? '')
-          .where((id) => id.isNotEmpty)
+          .map((nota) => nota['assessment_id'] as int? ?? 0)
+          .where((id) => id > 0)
           .toList();
     }
     return [];
   }
 
-  /// Obtiene las evaluaciones disponibles que NO tienen notas registradas
   List<EvaluationComponent> getAvailableEvaluations(int cursoIndex) {
     final allEvaluations = getEvaluationsForCourse(cursoIndex);
-    final registeredIds = getRegisteredEvaluationIds(cursoIndex);
+    final registeredIds = getRegisteredAssessmentIds(cursoIndex);
     return allEvaluations
         .where((eval) => !registeredIds.contains(eval.id))
         .toList();
   }
 }
-

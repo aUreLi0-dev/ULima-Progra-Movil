@@ -1,7 +1,3 @@
-// lib/pages/setup_carrera/setup_carrera_page.dart
-// CU3 + CU4 – configuración inicial tras el primer login.
-// Recrea `docs/images/UI/ConfiguracionCarrera.png`.
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
@@ -175,8 +171,11 @@ class _CarreraDropdown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => Container(
+    return Obx(() {
+      if (controller.cargandoCarreras.value) {
+        return const Center(child: CircularProgressIndicator());
+      }
+      return Container(
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(14),
@@ -184,9 +183,9 @@ class _CarreraDropdown extends StatelessWidget {
         ),
         padding: const EdgeInsets.symmetric(horizontal: 14),
         child: DropdownButtonHideUnderline(
-          child: DropdownButton<String>(
+          child: DropdownButton<int>(
             isExpanded: true,
-            value: controller.selectedCarrera.value,
+            value: controller.selectedCarreraId.value,
             hint: const Text(
               'Selecciona tu carrera',
               style: TextStyle(
@@ -197,10 +196,10 @@ class _CarreraDropdown extends StatelessWidget {
             icon: const Icon(LucideIcons.chevronDown, color: Color(0xFF8B8B8B)),
             items: controller.carreras
                 .map(
-                  (c) => DropdownMenuItem<String>(
-                    value: c,
+                  (c) => DropdownMenuItem<int>(
+                    value: c['id'] as int?,
                     child: Text(
-                      c,
+                      c['name'] as String? ?? '',
                       style: const TextStyle(
                         color: Color(0xFF1A1A1A),
                         fontWeight: FontWeight.w700,
@@ -209,11 +208,11 @@ class _CarreraDropdown extends StatelessWidget {
                   ),
                 )
                 .toList(),
-            onChanged: (v) => controller.selectedCarrera.value = v,
+            onChanged: (v) => controller.onCarreraChanged(v),
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 }
 
@@ -223,15 +222,29 @@ class _EspecialidadesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => Column(
+    return Obx(() {
+      if (controller.cargandoEspecialidades.value) {
+        return const Center(child: CircularProgressIndicator());
+      }
+      if (controller.selectedCarreraId.value == null) {
+        return const Padding(
+          padding: EdgeInsets.symmetric(vertical: 20),
+          child: Text(
+            'Selecciona una carrera primero',
+            style: TextStyle(color: Color(0xFF9B9B9B)),
+            textAlign: TextAlign.center,
+          ),
+        );
+      }
+      return Column(
         children: controller.especialidadesDisponibles.map((esp) {
-          final selected = controller.selectedEspecialidades.contains(esp);
+          final espId = esp['id'] as int;
+          final selected = controller.selectedEspecialidadIds.contains(espId);
           return Padding(
             padding: const EdgeInsets.only(bottom: 10),
             child: InkWell(
               borderRadius: BorderRadius.circular(14),
-              onTap: () => controller.toggleEspecialidad(esp),
+              onTap: () => controller.toggleEspecialidad(espId),
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 160),
                 padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
@@ -264,7 +277,7 @@ class _EspecialidadesList extends StatelessWidget {
                     const SizedBox(width: 12),
                     Expanded(
                       child: Text(
-                        esp,
+                        esp['name'] as String? ?? '',
                         style: TextStyle(
                           color: selected ? MaterialTheme.primaryDark : const Color(0xFF1A1A1A),
                           fontSize: 14,
@@ -278,8 +291,8 @@ class _EspecialidadesList extends StatelessWidget {
             ),
           );
         }).toList(),
-      ),
-    );
+      );
+    });
   }
 }
 

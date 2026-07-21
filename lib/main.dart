@@ -1,24 +1,24 @@
-// TERMINAL - flutter pub get
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '/configs/themes.dart';
 import '/services/auth_service.dart';
-import '/services/courses_service.dart';
-import 'services/evaluation_service.dart';
+import 'services/api_service.dart';
 import 'pages/home/home_page.dart';
 import 'pages/login/login_page.dart';
 import 'pages/setup_carrera/setup_carrera_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // Servicios globales: el AuthService es permanente para todo el ciclo de vida.
+
+  final apiService = ApiService();
+  await apiService.init();
+  Get.put<ApiService>(apiService, permanent: true);
   Get.put<AuthService>(AuthService(), permanent: true);
-  await Future.wait([
-    EvaluationSyllabusService().loadEvaluationData(),
-    CoursesService().loadCoursesData(),
-  ]);
+
+  final auth = Get.find<AuthService>();
+  await auth.tryAutoLogin();
+
   runApp(const MyApp());
 }
 

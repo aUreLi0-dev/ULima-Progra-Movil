@@ -1,36 +1,37 @@
 class EvaluationComponent {
-  final String id;
-  final String nombre; 
-  final String sigla;  
-  final double peso;   
-  final String tipo;  
+  final int id;
+  final String nombre;
+  final String sigla;
+  final double peso;
+  final String? tipo;
 
   EvaluationComponent({
     required this.id,
     required this.nombre,
     required this.sigla,
     required this.peso,
-    required this.tipo,
+    this.tipo,
   });
 
-  /// Convertir desde JSON
   factory EvaluationComponent.fromJson(Map<String, dynamic> json) {
     return EvaluationComponent(
-      id: json['id'] ?? '',
-      nombre: json['nombre'] ?? '',
-      sigla: json['sigla'] ?? '',
-      peso: (json['peso'] as num).toDouble(),
-      tipo: json['tipo'] ?? '',
+      id: json['assessment_id'] is int
+          ? json['assessment_id'] as int
+          : int.tryParse(json['assessment_id'].toString()) ?? 0,
+      nombre: json['assessment_name'] as String? ?? json['nombre'] as String? ?? '',
+      sigla: json['assessment_code'] as String? ?? json['sigla'] as String? ?? '',
+      peso: (json['weight'] as num?)?.toDouble() ?? (json['peso'] as num?)?.toDouble() ?? 0.0,
+      tipo: json['assessment_type'] as String? ?? json['tipo'] as String?,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
-      'nombre': nombre,
-      'sigla': sigla,
-      'peso': peso,
-      'tipo': tipo,
+      'assessment_id': id,
+      'assessment_name': nombre,
+      'assessment_code': sigla,
+      'weight': peso,
+      'assessment_type': tipo,
     };
   }
 }
@@ -48,26 +49,14 @@ class CourseSyllabus {
 
   double get pesoTotal => evaluaciones.fold(0, (sum, eval) => sum + eval.peso);
 
-  /// Convertir desde JSON
   factory CourseSyllabus.fromJson(Map<String, dynamic> json) {
-    final evaluacionesList = (json['evaluaciones'] as List<dynamic>? ?? [])
+    final evaluacionesList = (json['assesments'] as List<dynamic>? ?? [])
         .map((eval) => EvaluationComponent.fromJson(eval as Map<String, dynamic>))
         .toList();
-
     return CourseSyllabus(
-      cursoId: json['cursoId'] ?? '',
-      cursoNombre: json['cursoNombre'] ?? '',
+      cursoId: json['cursoId']?.toString() ?? json['course']?['id']?.toString() ?? '',
+      cursoNombre: json['cursoNombre'] as String? ?? json['course']?['name'] as String? ?? '',
       evaluaciones: evaluacionesList,
     );
-  }
-
-  /// Convertir a Map
-  Map<String, dynamic> toMap() {
-    return {
-      'cursoId': cursoId,
-      'cursoNombre': cursoNombre,
-      'evaluaciones': evaluaciones.map((e) => e.toMap()).toList(),
-      'pesoTotal': pesoTotal,
-    };
   }
 }
